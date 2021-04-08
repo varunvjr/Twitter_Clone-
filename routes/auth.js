@@ -6,6 +6,9 @@ const auth=require("../config/auth");
 router.get("/",(req,res)=>{
     res.send("Hello");
 })
+router.get("/signup",(req,res)=>{
+    res.send("Welcome to Signup Page");
+})
 router.post("/signup",Authentication.signup);
 router.get("/login",(req,res)=>{
     res.send("Welcome to login page");

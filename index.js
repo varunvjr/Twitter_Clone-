@@ -24,11 +24,12 @@ app.use(session({
 }))
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use(express.static(__dirname+"/public"));
+app.set("view engine","ejs");
 app.use("/api/auth",authRoutes);
 app.use("/api/users/:id/messages",checkLogin,ensureUser,messageRoutes);
 app.get("/",(req,res)=>{
-    res.send("Welcome!!");
+    res.render("home");
 })
 
 app.get("/api/messages",checkLogin,async function(req,res,next){
