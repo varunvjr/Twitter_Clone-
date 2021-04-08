@@ -28,7 +28,7 @@ app.use(passport.session());
 app.use("/api/auth",authRoutes);
 app.use("/api/users/:id/messages",checkLogin,ensureUser,messageRoutes);
 app.get("/",(req,res)=>{
-    res.send("Welcome");
+    res.send("Welcome!!");
 })
 
 app.get("/api/messages",checkLogin,async function(req,res,next){
