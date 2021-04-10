@@ -1,3 +1,28 @@
+.navbar{
+  margin-bottom:1rem;
+  background-color: aquamarine;
+}
+.navbar a{
+  margin:0 0.5rem;
+  font-weight: bold;
+}
+.logo {
+  content:url('./Images/warbler-logo.png');
+  display: inline-block;
+  width:20px;
+  margin-bottom:2px;
+  margin-right: 5px;
+  border-radius: 2px;
+}
+.navbar a:hover{
+  color:white;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.onboarding>.navbar{
+  background-image: url("./images/nav-bg.png");
+  background-size: 100% 100%;
+}
 .home-hero{
     width:100vw;
     height:47vw;
@@ -9,7 +34,7 @@
     align-items: center;
     justify-content: center;
     z-index: -1;
-    background-image: url("https://wallpapercave.com/wp/dIHwx7w.jpg");
+    background-image: url("./Images/signed-out-home.jpg");
     background-size:cover;
     text-align: center;
     padding:1rem;

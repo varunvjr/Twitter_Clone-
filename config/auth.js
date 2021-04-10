@@ -1,6 +1,5 @@
 exports.checkLogin = (req, res, next) => {
     if(req.isAuthenticated()) {
-        console.log("User id:",req.session.passport.user);
         return next();
     }
     res.status(404).send({

@@ -7,10 +7,10 @@ exports.signup = (req, res, next) => {
   console.log(req.body);
     const { email, username, password, profileImage } = req.body;
 
-    // const user =  User.create(req.body);
     User.findOne({ email: email })
     .then((user) => {
       if (user) {
+        res.redirect("/signup");
         res.status(400).send({
           msg: "User already exists",
         });
@@ -39,8 +39,6 @@ exports.signup = (req, res, next) => {
     })
   }
 exports.signin =  (req, res, next) => {
-    console.log("Login request",req.body);
-  
     passport.authenticate("local", {
       successRedirect: "/api/auth/secret",
       failureRedirect: "/api/auth/login",

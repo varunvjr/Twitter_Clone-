@@ -1,21 +1,23 @@
 const express=require("express");
 const router=express.Router();
-
+const User=require("../models/User");
 const Authentication=require("../handlers/auth");
 const auth=require("../config/auth");
 router.get("/",(req,res)=>{
     res.send("Hello");
 })
 router.get("/signup",(req,res)=>{
-    res.send("Welcome to Signup Page");
+    res.render("signup")
 })
 router.post("/signup",Authentication.signup);
 router.get("/login",(req,res)=>{
-    res.send("Welcome to login page");
+    res.render("login");
 })
 router.post("/login",Authentication.signin);
-router.get("/secret",auth.checkLogin,(req,res)=>{
-    res.send("Welcome to secret page")
+router.get("/secret",auth.checkLogin,async(req,res)=>{
+    const user=await User.findById(req.session.passport.user);
+    const username=await user.username;
+    res.render("secret",{username});
 })
 
 router.get("/logout",(req,res)=>{
