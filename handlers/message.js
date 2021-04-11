@@ -4,10 +4,9 @@ const User=require("../models/User");
 exports.createMessage=async function(req,res,next){
     try{
         const newmessage=new Message({
-            text:req.body.text,
+            text:req.body.message,
             user:req.params.id
         })
-        console.log(newmessage);
         await newmessage.save(); 
         let foundUser=await User.findById(req.params.id);
         foundUser.messages.push(newmessage._id);

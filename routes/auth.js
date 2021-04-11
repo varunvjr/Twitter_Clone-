@@ -17,7 +17,8 @@ router.post("/login",Authentication.signin);
 router.get("/secret",auth.checkLogin,async(req,res)=>{
     const user=await User.findById(req.session.passport.user);
     const username=await user.username;
-    res.render("secret",{username});
+    const sessionID=req.session.passport.user;
+    res.render("secret",{username,sessionID});
 })
 
 router.get("/logout",(req,res)=>{
