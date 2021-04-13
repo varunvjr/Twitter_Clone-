@@ -19,6 +19,7 @@ exports.signup = (req, res, next) => {
           email,
           username,
           password,
+          profileImage
         });
 
         bcrypt.genSalt(10, (err, salt) => {

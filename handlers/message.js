@@ -15,7 +15,7 @@ exports.createMessage=async function(req,res,next){
             username:true,
             profileImage:true
         });
-        return res.status(200).json(foundMessage);
+        res.redirect("/api/messages");
     }   
     catch(err){
         return next(err);
@@ -23,8 +23,18 @@ exports.createMessage=async function(req,res,next){
 }
 exports.getMessage=async(req,res,next)=>{
     try{
-        let message=req.params.message._id;
-        return res.status(200).json(message);
+        const user=await User.findById(req.params.id);
+        const message=await Message.findById(req.params.messageid);
+        const messageData={
+            username:user.username,
+            text:message.text,
+            createdAt:message.createdAt,
+            updatedAt:message.updatedAt,
+            messageId:message,
+            userId:req.params.id
+        }
+        console.log("Message Data: ",messageData);
+        res.render("showMessage",{messageData});
     }
     catch(err){
         return next(err);
@@ -33,9 +43,9 @@ exports.getMessage=async(req,res,next)=>{
 
 exports.deleteMessage=async(req,res,next)=>{
     try{
-        let foundMessage=req.params.message._id;
+        let foundMessage=await Message.findById(req.params.messageid);
         await foundMessage.remove();
-        return res.status(200).json(foundMessage);
+        return res.redirect("/api/messages");
     }
     catch(err){
         return next(err);

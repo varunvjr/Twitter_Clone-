@@ -1,0 +1,20 @@
+<%-include("partials/logoutHeader")%>
+<a href="/api/auth/secret"><button class="btn btn-success">Go back</button></a>
+<div class="container">
+    <div class="row">
+ <% messages.forEach(message => {%>
+  <div class="col-md-3" style="margin-left:2%;">
+    <div class="card" style="width: 18rem; margin-right: 30%;">
+      <img src=<%=message.user.profileImage%> style="margin:auto" width="60%" height="30%"   alt="...">
+      <div class="card-body">
+        <h5 class="card-title"><%=message.user.username%></h5>
+        <p class="card-text"><%=message.text%></p>
+        <a href="/api/users/<%=message.user._id%>/messages/<%=message._id%>" class="btn btn-primary">View More</a>
+      </div>
+    </div>
+    </div>
+ <%});    %>
+
+    </div>
+</div>
+<%-include("partials/footer")%>

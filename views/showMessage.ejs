@@ -1,0 +1,14 @@
+<%-include("partials/logoutHeader")%>
+<h1>Welcome to Show Message</h1>
+<p>
+    <h3>Username :<%=messageData.username%></h3>
+    <h3>Message :<%=messageData.text%></h3>
+    <h3>Message Created At :<%=messageData.createdAt%></h3>
+    <h3>Message Updated At :<%=messageData.updatedAt%></h3>
+</p>
+<form action="/api/users/<%=messageData.userId%>/messages/<%=messageData.messageId._id%>?_method=DELETE" method="POST">
+    <button type="submit" class="btn btn-danger">
+        Delete
+    </button>
+</form>
+<%-include("partials/footer")%>
